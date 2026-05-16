@@ -1,0 +1,30 @@
+# SICK MultiScan 100 Sensor Parameters
+# Structural Health Monitoring Configuration
+
+sensor:
+  model: "SICK MultiScan 100"
+    coverage: "360 degrees"
+      max_range_m: 100.0
+        angular_resolution_deg: 0.1
+          scan_frequency_hz: 20
+            ros2_topic: "/sick_multiscan/cloud"
+              frame_id: "sick_multiscan"
+
+              processing:
+                voxel_size_m: 0.02         # 2cm voxel downsampling
+                  icp_threshold_m: 0.05      # ICP max correspondence distance
+                    defect_threshold_m: 0.03   # 3cm = defect flag threshold
+                      defect_ratio_alert_pct: 2.0 # Alert if >2% points flagged
+                        normal_radius_m: 0.04       # Normal estimation radius
+
+                        icp:
+                          method: "point_to_plane"
+                            max_iterations: 50
+                              fitness_threshold: 0.90    # Minimum acceptable fitness score
+                                rmse_threshold_m: 0.005    # Max acceptable RMSE
+
+                                output:
+                                  report_csv: "results/defect_report.csv"
+                                    visualization: true
+                                      colored_pcd: "results/defect_cloud.ply"
+                                        alert_on_flag: true

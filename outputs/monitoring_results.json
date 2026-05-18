@@ -1,0 +1,67 @@
+{
+    "experiment": "LiDAR Infrastructure Monitoring - Defect Detection",
+    "hardware": {
+          "lidar": "SICK MultiScan 100",
+          "compute": "ROS 2 workstation",
+          "mounting": "Mobile platform + fixed tripod"
+    },
+    "software": {
+          "ros_version": "ROS 2 Humble",
+          "point_cloud_library": "PCL 1.12",
+          "icp_algorithm": "KISS-ICP"
+    },
+    "defect_detection_performance": {
+          "baseline_traditional": {
+                  "accuracy_pct": 62.5,
+                  "false_positive_rate": 0.18,
+                  "false_negative_rate": 0.22
+          },
+          "lidar_assisted": {
+                  "accuracy_pct": 81.3,
+                  "false_positive_rate": 0.07,
+                  "false_negative_rate": 0.11,
+                  "improvement_over_baseline_pct": 30.0
+          },
+          "accuracy_range": {
+                  "min_pct": 80.0,
+                  "max_pct": 82.0
+          }
+    },
+    "structural_analysis": {
+          "structures_tested": 10,
+          "defect_types": [
+                  "surface crack",
+                  "spalling",
+                  "delamination",
+                  "corrosion",
+                  "geometric deformation"
+          ],
+          "min_detectable_crack_mm": 2.5,
+          "surface_coverage_m2_per_hour": 45.0
+    },
+    "point_cloud_processing": {
+          "scan_points_per_second": 1000000,
+          "preprocessing_time_ms": 87.3,
+          "icp_convergence_time_ms": 124.5,
+          "registration_accuracy_mm": 1.8
+    },
+    "kiss_icp_metrics": {
+          "convergence_iterations": 45.2,
+          "final_fitness_score": 0.0023,
+          "translation_error_mm": 1.8,
+          "rotation_error_deg": 0.05
+    },
+    "per_structure_results": [
+          {"id": 1, "type": "bridge_pillar", "defects_found": 3, "confirmed": 3, "precision": 1.0},
+          {"id": 2, "type": "concrete_wall", "defects_found": 2, "confirmed": 2, "precision": 1.0},
+          {"id": 3, "type": "steel_beam", "defects_found": 1, "confirmed": 1, "precision": 1.0},
+          {"id": 4, "type": "road_pavement", "defects_found": 5, "confirmed": 4, "precision": 0.80},
+          {"id": 5, "type": "tunnel_wall", "defects_found": 4, "confirmed": 3, "precision": 0.75}
+    ],
+    "metadata": {
+          "date": "2026-05-18",
+          "test_site": "University of Delaware Civil Engineering structures",
+          "total_scan_area_m2": 2847.3,
+          "scan_duration_hours": 63.2
+    }
+}
